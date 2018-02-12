@@ -16,15 +16,12 @@ export class HomeComponent implements OnInit {
 
   constructor(private route: ActivatedRoute) { }
 
-  getCode(){
+  ngOnInit() {
+    window.location.href=this.authLink;
     this.route.params.subscribe(params=>{
       this.githubCode=params['code'];
       console.log(this.githubCode);
     });
-  }
-
-  ngOnInit() {
-    window.location.href=this.authLink;
   }
 
 }
