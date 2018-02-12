@@ -12,12 +12,14 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { HttpModule } from '@angular/http';
 import { DataService } from './data.service';
+import { AuthComponent } from './auth/auth.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ReposComponent,
-    HomeComponent
+    HomeComponent,
+    AuthComponent
   ],
   imports: [
     BrowserModule,

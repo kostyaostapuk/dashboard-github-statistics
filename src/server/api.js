@@ -42,4 +42,6 @@ router.get('/users', (req, res) => {
     });
 });
 
+//Get Repository Info
+router.get('/')
 module.exports = router;
