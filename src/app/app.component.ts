@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { DataService } from './data.service';
+import { DataService } from './data/data.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -11,5 +11,7 @@ export class AppComponent {
   constructor(private _dataService: DataService){
     this._dataService.getUsers()
       .subscribe(res=> this.users=res);
+
+    console.log(window.localStorage.getItem('githubCode'));
   }
 }
