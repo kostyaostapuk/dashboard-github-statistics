@@ -9,9 +9,10 @@ const routes: Routes=[
   { path: '', component: HomeComponent },
   { path: 'auth', component: AuthComponent },
   { path: 'repos', component: ReposComponent },
-  { path: 'repos/:reposID', component: ReposComponent }
+  { path: 'repos/:reposID', component: ReposComponent },
+  { path: ':code', component: HomeComponent }
 ];
-const config: ExtraOptions = { useHash: true }
+const config: ExtraOptions = { useHash: false }
 @NgModule({
   imports: [
     CommonModule,
