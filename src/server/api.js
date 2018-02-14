@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const MongoClient = require('mongodb').MongoClient;
 const ObjectID = require('mongodb').ObjectID;
-const request= require('request');
+const request = require('request');
 const queryString = require('query-string');
 const app = express();
 
@@ -47,23 +47,20 @@ router.get('/users', (req, res) => {
 
 // Get token
 router.post('/github/token', (req, res, next) => {
-  var options={
+  var options = {
     url: 'https://github.com/login/oauth/access_token',
     form: req.body
   }
   console.log(options);
-  function callback(err, response, body){
-    // if(!err && response.status==200){
-    //   console.log("hi");
-    //   console.log(body);
-    // }else {
-    //   console.log(err);
-    // }
-      console.log(body);
-      queryString.parse(body);
 
+  function callback(err, response, body) {
+    if (err) { console.log(err); }
+
+    console.log(body);
+    var queryStr = queryString.parse(body);
+    console.log(queryStr.access_token);
   }
-  request.post(options,callback);
+  request.post(options, callback);
 })
 
 module.exports = router;
