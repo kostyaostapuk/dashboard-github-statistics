@@ -14,7 +14,7 @@ export class NavbarComponent implements OnInit {
     this.githubService.auth();
   }
   ngOnInit() {
-    this.githubService.getToken();
+    this.githubService.saveGithubCode();
   }
 
 }
