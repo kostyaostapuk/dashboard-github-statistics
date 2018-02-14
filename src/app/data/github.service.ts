@@ -33,7 +33,7 @@ export class GithubService {
       }
       // console.log(body);
       // console.log(body.code);
-      if(body.code!=undefined){
+      if(body.code!==undefined){
         this._http.post("http://localhost:4200/api/github/token",body, {headers: headers})
             .subscribe(res => res);
       }

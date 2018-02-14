@@ -3,6 +3,7 @@ const router = express.Router();
 const MongoClient = require('mongodb').MongoClient;
 const ObjectID = require('mongodb').ObjectID;
 const request= require('request');
+const queryString = require('query-string');
 const app = express();
 
 // Connect
@@ -46,29 +47,23 @@ router.get('/users', (req, res) => {
 
 // Get token
 router.post('/github/token', (req, res, next) => {
-  // var bodyReq = req.body;
-  // var bodyRes = res.body;
-  //console.log(bodyReq);
-
-  //res.send(bodyReq);
-  //console.log(bodyReq+"\n"+bodyRes);
-  delete req.headers.host;
-  var body={
+  var options={
     url: 'https://github.com/login/oauth/access_token',
-    headers: req.headers,
-    body: req.body
+    form: req.body
   }
-  //console.log(body.toString());
-  request(body.toString(), (err, remoteResponse, remoteBody)=>{
-    console.log(remoteResponse);
-    console.log(remoteBody);
-    if(err) { return  res.status(500).end('Error'); }
+  console.log(options);
+  function callback(err, response, body){
+    // if(!err && response.status==200){
+    //   console.log("hi");
+    //   console.log(body);
+    // }else {
+    //   console.log(err);
+    // }
+      console.log(body);
+      queryString.parse(body);
 
-    // res.send("Text");
-    res.end(remoteBody);
-    console.log(remoteBody);
-  });
-  //res.send("Hi");
+  }
+  request.post(options,callback);
 })
 
 module.exports = router;
