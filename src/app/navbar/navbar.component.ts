@@ -15,7 +15,6 @@ export class NavbarComponent implements OnInit {
 
   post(){
     this.githubService.getToken();
-    console.log(this.githubService.getToken());
   }
   auth(){
     this.githubService.auth();

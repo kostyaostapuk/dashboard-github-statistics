@@ -31,10 +31,12 @@ export class GithubService {
         code: localStorage.getItem('githubCode'),
         redirect_uri: this.redirectURI
       }
-
-
-      this._http.post("http://localhost:4200/api/github/token",body, {headers: headers})
-          .subscribe(res => console.log(res.json()));
+      // console.log(body);
+      // console.log(body.code);
+      if(body.code!=undefined){
+        this._http.post("http://localhost:4200/api/github/token",body, {headers: headers})
+            .subscribe(res => res);
+      }
     });
 
   }
