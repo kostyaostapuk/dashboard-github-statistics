@@ -5,7 +5,11 @@ const cors = require('cors');
 const http = require('http');
 const app = express();
 
-app.use(cors());
+app.use(cors({
+  origin: 'http://localhost:4200',
+  credentials: true
+}));
+
 
 app.use(function(req, res, next) {
    res.header("Access-Control-Allow-Origin", "*");
@@ -17,18 +21,28 @@ app.use(function(req, res, next) {
 // API file for interacting with MongoDB
 const api = require('./src/server/api');
 
+//ViewEngine
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
+app.engine('html', require('ejs').renderFile);
+
+// Angular DIST output folder
+app.use(express.static(path.join(__dirname, 'dist')));
+
 // Parsers
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false}));
 
-// Angular DIST output folder
-app.use(express.static(path.join(__dirname, 'dist')));
+
 
 // API location
 app.use('/api', api);
 
 // Send all other requests to the Angular app
 app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'src/index.html'));
+});
+app.post('*', (req, res) => {
     res.sendFile(path.join(__dirname, 'src/index.html'));
 });
 

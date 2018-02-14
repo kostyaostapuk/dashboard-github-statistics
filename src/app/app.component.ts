@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { DataService } from './data/data.service';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',

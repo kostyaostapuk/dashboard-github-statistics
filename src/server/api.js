@@ -3,6 +3,8 @@ const router = express.Router();
 const MongoClient = require('mongodb').MongoClient;
 const ObjectID = require('mongodb').ObjectID;
 
+const app=express();
+
 // Connect
 const connection = (closure) => {
     return MongoClient.connect('mongodb://localhost:27017/dashboard-github-statistics', (err, db) => {
@@ -42,6 +44,13 @@ router.get('/users', (req, res) => {
     });
 });
 
-//Get Repository Info
-router.get('/')
+// Get token
+router.post('/github/token', (req,res, next)=>{
+   // var url='https://github.com/login/oauth/access_token';
+   // app.post(url)
+   res.send("Hello");
+   var body=req.body;
+   console.log(body);
+})
+
 module.exports = router;

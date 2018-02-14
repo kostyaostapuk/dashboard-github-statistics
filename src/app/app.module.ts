@@ -10,7 +10,7 @@ import { AuthComponent } from './auth/auth.component';
 import { NavbarComponent } from './navbar/navbar.component';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { HttpModule, Http } from '@angular/http';
+import { HttpModule } from '@angular/http';
 // Services //
 import { DataService } from './data/data.service';
 import { GithubService } from './data/github.service';

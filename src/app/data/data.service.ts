@@ -9,7 +9,6 @@ import { GithubService } from './github.service';
 @Injectable()
 export class DataService {
   result: any;
-  token: any;
 
   constructor(private _http: Http, private githubService: GithubService) { }
 
