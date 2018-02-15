@@ -8,10 +8,22 @@ import { GithubService } from '../data/github.service';
 })
 export class HomeComponent implements OnInit {
   constructor( private githubService: GithubService ) { }
-  token: any;
+  userInfo: any;
+  userLogin: string;
 
+
+  getUserInfo(){
+    this.githubService.getUserInfo()
+    .subscribe(res=>{
+      this.userInfo=res['_body'];
+    });
+  }
   ngOnInit() {
-    this.token=this.githubService.getGithubToken();
+
+    this.getUserInfo();
+
+    this.userLogin=this.userInfo['login'];
+    console.log(this.userInfo);
     this.githubService.saveGithubCode();
   }
 }

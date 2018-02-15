@@ -17,6 +17,10 @@ export class GithubService {
   authLink: string = `https://github.com/login/oauth/authorize?client_id=` +
   `${this.clientID}&client_secret=${this.clientSecret}&redirect_uri=${this.redirectURI}`;
 
+
+  //GET REQUEST LINKS
+  userInfoLink: string = 'https://api.github.com/user';
+
   auth() {
     window.location.href = this.authLink;
   }
@@ -48,13 +52,22 @@ export class GithubService {
       );
     }
   }
-  getGithubToken() {
-    let githubToken = localStorage.getItem('githubToken');
-    console.log(githubToken);
-    return githubToken;
+
+  reqGet(url: string){
+    let token = localStorage.getItem('githubToken');
+    let headers = new Headers();
+    headers.append('Authorization', "token "+token);
+    //headers.append('Content-Type', 'application/json');
+    let options = new RequestOptions({headers: headers});
+    options.headers=headers;
+
+    return this._http.get(url, options)
+      .map(res=>res);
   }
 
-  
-
+  getUserInfo(){
+    console.log(this.reqGet(this.userInfoLink));
+    return this.reqGet(this.userInfoLink);
+  }
 
 }
