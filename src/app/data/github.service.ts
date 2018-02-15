@@ -68,23 +68,6 @@ export class GithubService {
   getUserInfo() {
     console.log(this.reqGet(this.userInfoLink));
     return this.reqGet(this.userInfoLink).map( res => res);
-
-
-    // .subscribe(res=>{
-    //   res['_body'].map(res=>res);
-    // });
-
-    // map(
-    //   res => {
-    //     var user = {
-    //       login: res['_body'].login,
-    //       id: res['_body'].id,
-    //       photo: res['_body'].avatar_url,
-    //       followers: res['_body'].followers,
-    //       following: res['_body'].following
-    //     }
-    //   }
-    // );
   }
 
 }

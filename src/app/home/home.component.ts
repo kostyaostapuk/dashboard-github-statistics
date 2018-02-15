@@ -18,7 +18,6 @@ export class HomeComponent implements OnInit {
 
 
   getUserInfo(){
-    //this.userInfo=this.githubService.getUserInfo();
     this.githubService.getUserInfo()
       .subscribe( res => {
         var body =JSON.parse(res["_body"]);
@@ -28,16 +27,12 @@ export class HomeComponent implements OnInit {
         this.userPublicRep = body['public_repos'];
         this.userFollowers = body['followers'];
         this.userFollowing = body['following'];
-        //console.log(res["_body"].map(res=>res.login));
-        //res['_body'].map( res => console.log(res))
+
       });
     console.log(this.userInfo);
   }
   ngOnInit() {
-
     this.getUserInfo();
-
-    console.log(this.userInfo);
     this.githubService.saveGithubCode();
   }
 }
