@@ -6,6 +6,7 @@ import { Http, Headers, RequestOptions } from '@angular/http';
 export class GithubService {
   constructor(private route: ActivatedRoute, private _http: Http) { }
 
+  loginStatus: boolean =false;
   githubToken: string;
   githubCode: string = localStorage.getItem('githubCode');
   clientID: string = 'f54825f8d3e236c4b3c2';
@@ -15,14 +16,6 @@ export class GithubService {
   authLink: string = `https://github.com/login/oauth/authorize?client_id=` +
   `${this.clientID}&client_secret=${this.clientSecret}&redirect_uri=${this.redirectURI}`;
 
-  body = {
-    client_id: this.clientID,
-    client_secret: this.clientSecret,
-    code: this.githubCode,
-    redirect_uri: this.redirectURI
-  }
-
-
   auth() {
     window.location.href = this.authLink;
   }
@@ -31,17 +24,23 @@ export class GithubService {
     this.route.queryParams.subscribe(params => {
       this.githubCode = params['code'];
       localStorage.setItem('githubCode', this.githubCode);
+      this.checkGithubCode();
     });
-    this.checkGithubCode();
   }
   checkGithubCode(){
     if (this.githubCode === undefined) {
       console.log("Ошибка авторизации");
+      console.log(this.loginStatus);
     } else {
       var headers = new Headers();
       headers.append('Content-Type', 'application/json');
-
-      this._http.post("http://localhost:4200/api/github/token", this.body, { headers: headers })
+      var body = {
+        client_id: this.clientID,
+        client_secret: this.clientSecret,
+        code: this.githubCode,
+        redirect_uri: this.redirectURI
+      }
+      this._http.post("http://localhost:4200/api/github/token", body, { headers: headers })
         .subscribe(res => res);
     }
   }

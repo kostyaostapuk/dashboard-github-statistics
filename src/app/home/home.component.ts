@@ -7,9 +7,9 @@ import { GithubService } from '../data/github.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  constructor(private githubService) { }
+  constructor( private githubService: GithubService ) { }
 
   ngOnInit() {
-
+    
   }
 }

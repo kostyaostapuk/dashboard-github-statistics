@@ -51,7 +51,7 @@ router.post('/github/token', (req, res, next) => {
     url: 'https://github.com/login/oauth/access_token',
     form: req.body
   }
-  console.log(options);
+  console.log(options.form);
 
   function callback(err, response, body) {
     if (err) { console.log(err); }
@@ -59,6 +59,8 @@ router.post('/github/token', (req, res, next) => {
     console.log(body);
     var queryStr = queryString.parse(body);
     console.log(queryStr.access_token);
+    res.send(queryStr.access_token);
+    console.log("TExt");
   }
   request.post(options, callback);
 })

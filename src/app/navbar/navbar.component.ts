@@ -10,9 +10,8 @@ import 'rxjs/add/operator/map';
 export class NavbarComponent implements OnInit {
 
   constructor(private githubService: GithubService, private _data: DataService) {}
-  auth(){
-    this.githubService.auth();
-  }
+
+  auth(){ this.githubService.auth(); }
   ngOnInit() {
     this.githubService.saveGithubCode();
   }
