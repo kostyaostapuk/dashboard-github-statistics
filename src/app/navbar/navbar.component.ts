@@ -13,7 +13,7 @@ export class NavbarComponent implements OnInit {
 
   auth(){ this.githubService.auth(); }
   ngOnInit() {
-    this.githubService.saveGithubCode();
+
   }
 
 }

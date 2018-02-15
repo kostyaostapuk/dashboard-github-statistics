@@ -1,17 +1,18 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Http, Headers, RequestOptions } from '@angular/http';
+import 'rxjs/add/operator/map';
 
 @Injectable()
 export class GithubService {
   constructor(private route: ActivatedRoute, private _http: Http) { }
 
   loginStatus: boolean =false;
-  githubToken: string;
   githubCode: string = localStorage.getItem('githubCode');
   clientID: string = 'f54825f8d3e236c4b3c2';
   clientSecret: string = '756ff60fe66671b9adcc1b189055c84f478d3ae1';
   redirectURI: string = 'http://localhost:4200';
+
 
   authLink: string = `https://github.com/login/oauth/authorize?client_id=` +
   `${this.clientID}&client_secret=${this.clientSecret}&redirect_uri=${this.redirectURI}`;
@@ -40,13 +41,20 @@ export class GithubService {
         code: this.githubCode,
         redirect_uri: this.redirectURI
       }
+
       this._http.post("http://localhost:4200/api/github/token", body, { headers: headers })
-        .subscribe(res => res);
+        .subscribe(res =>
+        localStorage.setItem('githubToken', res.json())
+      );
     }
   }
   getGithubToken() {
-
+    let githubToken = localStorage.getItem('githubToken');
+    console.log(githubToken);
+    return githubToken;
   }
+
+  
 
 
 }

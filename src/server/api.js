@@ -55,12 +55,9 @@ router.post('/github/token', (req, res, next) => {
 
   function callback(err, response, body) {
     if (err) { console.log(err); }
-
-    console.log(body);
     var queryStr = queryString.parse(body);
-    console.log(queryStr.access_token);
-    res.send(queryStr.access_token);
-    console.log("TExt");
+    //res.send(queryStr.access_token);
+    res.json(queryStr.access_token);
   }
   request.post(options, callback);
 })
