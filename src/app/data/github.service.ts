@@ -7,7 +7,7 @@ import 'rxjs/add/operator/map';
 export class GithubService {
   constructor(private route: ActivatedRoute, private _http: Http) { }
 
-  loginStatus: boolean =false;
+  loginStatus: boolean = false;
   githubCode: string = localStorage.getItem('githubCode');
   clientID: string = 'f54825f8d3e236c4b3c2';
   clientSecret: string = '756ff60fe66671b9adcc1b189055c84f478d3ae1';
@@ -32,7 +32,7 @@ export class GithubService {
       this.checkGithubCode();
     });
   }
-  checkGithubCode(){
+  checkGithubCode() {
     if (this.githubCode === undefined) {
       console.log("Ошибка авторизации");
       console.log(this.loginStatus);
@@ -48,26 +48,43 @@ export class GithubService {
 
       this._http.post("http://localhost:4200/api/github/token", body, { headers: headers })
         .subscribe(res =>
-        localStorage.setItem('githubToken', res.json())
-      );
+          localStorage.setItem('githubToken', res.json())
+        );
     }
   }
 
-  reqGet(url: string){
+  reqGet(url: string) {
     let token = localStorage.getItem('githubToken');
     let headers = new Headers();
-    headers.append('Authorization', "token "+token);
-    //headers.append('Content-Type', 'application/json');
-    let options = new RequestOptions({headers: headers});
-    options.headers=headers;
+    headers.append('Authorization', "token " + token);
+    headers.append('Content-Type', 'application/json');
+    let options = new RequestOptions({ headers: headers });
+    options.headers = headers;
 
     return this._http.get(url, options)
-      .map(res=>res);
+      .map(res => res);
   }
 
-  getUserInfo(){
+  getUserInfo() {
     console.log(this.reqGet(this.userInfoLink));
-    return this.reqGet(this.userInfoLink);
+    return this.reqGet(this.userInfoLink).map( res => res);
+
+
+    // .subscribe(res=>{
+    //   res['_body'].map(res=>res);
+    // });
+
+    // map(
+    //   res => {
+    //     var user = {
+    //       login: res['_body'].login,
+    //       id: res['_body'].id,
+    //       photo: res['_body'].avatar_url,
+    //       followers: res['_body'].followers,
+    //       following: res['_body'].following
+    //     }
+    //   }
+    // );
   }
 
 }

@@ -1,6 +1,19 @@
-<p>
-  home works!
-</p>
-<ul>
-  <li>{{userLogin}}</li>
-</ul>
+<div class="jumbotron">
+  <div class="container">
+    <div class="row ">
+      <div class="col-md-12 text-center">
+        <img src="{{userPhoto}}" alt="" class="img-responsive img-circle center-block">
+        <h2>Welcome to application,
+          <a href="http://github.com/{{userLogin}}" target="_blank">{{userLogin}}</a>
+        </h2>
+      </div>
+      <hr>
+      <div class="col-md-4 text-center"><h3>Public repository</h3> <br> <h1>{{userPublicRep}}</h1></div>
+      <div class="col-md-4 text-center"><h3>Your followers</h3> <br> <h1>{{userFollowers}}</h1></div>
+      <div class="col-md-4 text-center"><h3>Your following</h3> <br> <h1>{{userFollowing}}</h1></div>
+    </div>
+    <!-- <p>{{userLogin}}</p> -->
+
+    <!-- <p>{{userLogin}}</p> -->
+  </div>
+</div>
