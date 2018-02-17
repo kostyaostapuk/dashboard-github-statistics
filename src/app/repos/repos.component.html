@@ -1,4 +1,4 @@
 <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Select Repository <span class="caret"></span></button>
 <ul class="dropdown-menu scrollable-menu" role="menu">
-  <li><a href="#">Action</a></li>
+  <li *ngFor="let repos of reposList"><a (click)="getNameRep(repos.name)">{{repos.name}}</a></li>
 </ul>

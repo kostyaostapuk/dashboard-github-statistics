@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Http, Headers, RequestOptions } from '@angular/http';
+//import { HttpClient, HttpHeaders } from '@angular/common/http';
 import 'rxjs/add/operator/map';
 
 @Injectable()
@@ -39,7 +40,7 @@ export class GithubService {
     } else {
       this.isLoggedIn=true;
       localStorage.setItem('isLoggedIn', this.isLoggedIn.toString());
-      
+
       let headers = new Headers();
       headers.append('Content-Type', 'application/json');
       let body = {

@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+//import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -14,7 +14,7 @@ import { HttpModule } from '@angular/http';
 // Services //
 import { DataService } from './data/data.service';
 import { GithubService } from './data/github.service';
-import { UserRoomService } from './user-room/user-room.service';
+import { ReposService } from './repos/repos.service';
 import { AuthGuard } from './data/auth.service';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { ChartComponent } from './chart/chart.component';
@@ -35,9 +35,10 @@ import { ChartComponent } from './chart/chart.component';
     AppRoutingModule,
     BrowserModule,
     NgbModule.forRoot(),
-    HttpModule
+    HttpModule,
+    //HttpClientModule
   ],
-  providers: [DataService, GithubService, UserRoomService, AuthGuard],
+  providers: [ DataService, GithubService, ReposService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

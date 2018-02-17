@@ -13,4 +13,5 @@ Run app `ng serve`
 ## Start NodeJS Server
 
 Run server `node server`
+
 Navigate to `http://localhost:3000/`
