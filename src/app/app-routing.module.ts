@@ -8,16 +8,10 @@ import { ReposComponent } from './repos/repos.component';
 import { UserRoomComponent } from './user-room/user-room.component';
 const routes: Routes=[
   { path: '', component: HomeComponent},
-  // {
-  //   path: 'user-room',
-  //   component: UserRoomComponent ,
-  //   canActivate: [AuthGuard],
-  //   children: [
-  //     {path: '', redirectTo: 'repos'},
-  //     {path: 'repos', component: ReposComponent}
-  //   ]
-  //
-  // },
+  { path: 'user-room',
+    component: UserRoomComponent ,
+    canActivate: [AuthGuard],
+  },
 ];
 //const config: ExtraOptions = { useHash: true }
 @NgModule({

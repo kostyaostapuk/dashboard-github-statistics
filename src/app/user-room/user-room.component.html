@@ -1,27 +1,10 @@
 <div class="container-fluid">
   <div class="row ">
-    <div class="col-md-2 text-center">
+    <app-sidebar></app-sidebar>
 
-      <ul class="list-group">
-        <li class="list-group-item">
-          <img src="{{userInfo.photo}}" alt="" class="img-responsive img-circle center-block">
-          <h3> Hello, <a href="http://github.com/{{userInfo.login}}" target="_blank">{{userInfo.login}}</a> </h3>
-        </li>
-
-        <li class="list-group-item">
-          <span class="badge">{{userInfo.pubRep}}</span> Public repository
-        </li>
-
-        <li class="list-group-item">
-          <span class="badge">{{userInfo.followers}}</span> Your followers
-        </li>
-
-        <li class="list-group-item">
-          <span class="badge">{{userInfo.following}}</span> Your following
-        </li>
-      </ul>
+    <div class="col-md-10">
+      <app-repos></app-repos>
+      <app-chart></app-chart>
     </div>
-
-    
   </div>
 </div>

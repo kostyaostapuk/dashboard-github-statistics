@@ -14,8 +14,10 @@ import { HttpModule } from '@angular/http';
 // Services //
 import { DataService } from './data/data.service';
 import { GithubService } from './data/github.service';
+import { UserRoomService } from './user-room/user-room.service';
 import { AuthGuard } from './data/auth.service';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import { ChartComponent } from './chart/chart.component';
 
 
 
@@ -24,10 +26,10 @@ import { SidebarComponent } from './sidebar/sidebar.component';
     AppComponent,
     ReposComponent,
     HomeComponent,
-    AuthComponent,
     NavbarComponent,
     UserRoomComponent,
-    SidebarComponent
+    SidebarComponent,
+    ChartComponent
   ],
   imports: [
     AppRoutingModule,
@@ -35,7 +37,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
     NgbModule.forRoot(),
     HttpModule
   ],
-  providers: [DataService, GithubService, AuthGuard],
+  providers: [DataService, GithubService, UserRoomService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
