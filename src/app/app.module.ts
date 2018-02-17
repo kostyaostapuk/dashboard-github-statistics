@@ -8,12 +8,16 @@ import { ReposComponent } from './repos/repos.component';
 import { HomeComponent } from './home/home.component';
 import { AuthComponent } from './auth/auth.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { UserRoomComponent } from './user-room/user-room.component';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpModule } from '@angular/http';
 // Services //
 import { DataService } from './data/data.service';
 import { GithubService } from './data/github.service';
+import { AuthGuard } from './auth/auth.service';
+
+
 
 @NgModule({
   declarations: [
@@ -21,7 +25,8 @@ import { GithubService } from './data/github.service';
     ReposComponent,
     HomeComponent,
     AuthComponent,
-    NavbarComponent
+    NavbarComponent,
+    UserRoomComponent
   ],
   imports: [
     AppRoutingModule,
@@ -29,7 +34,7 @@ import { GithubService } from './data/github.service';
     NgbModule.forRoot(),
     HttpModule
   ],
-  providers: [DataService, GithubService],
+  providers: [DataService, GithubService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

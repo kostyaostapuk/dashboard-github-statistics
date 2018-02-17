@@ -11,9 +11,14 @@ export class NavbarComponent implements OnInit {
 
   constructor(private githubService: GithubService, private _data: DataService) {}
 
-  auth(){ this.githubService.auth(); }
+  auth(){
+    this.githubService.auth();
+  }
+  logout(){
+    this.githubService.clearData();
+  }
   ngOnInit() {
-
+    this.githubService.saveGithubCode();
   }
 
 }

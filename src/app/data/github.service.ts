@@ -7,7 +7,7 @@ import 'rxjs/add/operator/map';
 export class GithubService {
   constructor(private route: ActivatedRoute, private _http: Http) { }
 
-  loginStatus: boolean = false;
+  isLoggedIn: boolean = false;
   githubCode: string = localStorage.getItem('githubCode');
   clientID: string = 'f54825f8d3e236c4b3c2';
   clientSecret: string = '756ff60fe66671b9adcc1b189055c84f478d3ae1';
@@ -24,10 +24,10 @@ export class GithubService {
   auth() {
     window.location.href = this.authLink;
   }
-
   saveGithubCode() {
     this.route.queryParams.subscribe(params => {
       this.githubCode = params['code'];
+      console.log(this.githubCode);
       localStorage.setItem('githubCode', this.githubCode);
       this.checkGithubCode();
     });
@@ -35,18 +35,17 @@ export class GithubService {
   checkGithubCode() {
     if (this.githubCode === undefined) {
       console.log("Ошибка авторизации");
-      console.log(this.loginStatus);
     } else {
-      var headers = new Headers();
+      let headers = new Headers();
       headers.append('Content-Type', 'application/json');
-      var body = {
+      let body = {
         client_id: this.clientID,
         client_secret: this.clientSecret,
         code: this.githubCode,
         redirect_uri: this.redirectURI
       }
 
-      this._http.post("http://localhost:4200/api/github/token", body, { headers: headers })
+      this._http.post("http://localhost:3000/api/github/token", body, { headers: headers })
         .subscribe(res =>
           localStorage.setItem('githubToken', res.json())
         );
@@ -66,8 +65,11 @@ export class GithubService {
   }
 
   getUserInfo() {
-    console.log(this.reqGet(this.userInfoLink));
     return this.reqGet(this.userInfoLink).map( res => res);
+  }
+
+  clearData(){
+    localStorage.clear();
   }
 
 }
