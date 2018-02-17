@@ -9,14 +9,14 @@ import 'rxjs/add/operator/map';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor(private githubService: GithubService, private _data: DataService) {}
+  constructor(private githubService: GithubService, private _data: DataService) { }
 
-  auth(){
-    this.githubService.auth();
-  }
-  logout(){
-    this.githubService.clearData();
-  }
+  auth() { this.githubService.auth();}
+  logout() { this.githubService.clearData(); this.home(); }
+  home() { this.githubService.goHome(); }
+  goRoom() { this.githubService.goRoom(); }
+
+
   ngOnInit() {
     this.githubService.saveGithubCode();
   }

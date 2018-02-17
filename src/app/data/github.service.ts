@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Http, Headers, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/map';
 
 @Injectable()
 export class GithubService {
-  constructor(private route: ActivatedRoute, private _http: Http) { }
+  constructor(private route: ActivatedRoute, private router: Router, private _http: Http) { }
 
   isLoggedIn: boolean = false;
   githubCode: string = localStorage.getItem('githubCode');
@@ -27,8 +27,9 @@ export class GithubService {
   saveGithubCode() {
     this.route.queryParams.subscribe(params => {
       this.githubCode = params['code'];
-      console.log(this.githubCode);
       localStorage.setItem('githubCode', this.githubCode);
+
+
       this.checkGithubCode();
     });
   }
@@ -36,6 +37,9 @@ export class GithubService {
     if (this.githubCode === undefined) {
       console.log("Ошибка авторизации");
     } else {
+      this.isLoggedIn=true;
+      localStorage.setItem('isLoggedIn', this.isLoggedIn.toString());
+      
       let headers = new Headers();
       headers.append('Content-Type', 'application/json');
       let body = {
@@ -49,6 +53,13 @@ export class GithubService {
         .subscribe(res =>
           localStorage.setItem('githubToken', res.json())
         );
+    }
+  }
+  checkLoggedIn(){
+    if (this.isLoggedIn) {
+        this.router.navigate(['user-room']);
+    } else{
+        this.router.navigate(['']);
     }
   }
 
@@ -70,6 +81,12 @@ export class GithubService {
 
   clearData(){
     localStorage.clear();
+    this.router.navigate(['']);
   }
-
+  goHome(){
+    this.router.navigate(['']);
+  }
+  goRoom(){
+    this.router.navigate(['user-room']);
+  }
 }

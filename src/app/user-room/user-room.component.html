@@ -1,16 +1,27 @@
-<div class="jumbotron">
-  <div class="container">
-    <div class="row ">
-      <div class="col-md-12 text-center">
-        <img src="{{userInfo.photo}}" alt="" class="img-responsive img-circle center-block">
-        <h2>Welcome to application!
-          <a href="http://github.com/{{userInfo.login}}" target="_blank">{{userInfo.login}}</a>
-        </h2>
-      </div>
-      <hr>
-      <div class="col-md-4 text-center"><h3>Public repository</h3> <br> <h1>{{userInfo.pubRep}}</h1></div>
-      <div class="col-md-4 text-center"><h3>Your followers</h3> <br> <h1>{{userInfo.followers}}</h1></div>
-      <div class="col-md-4 text-center"><h3>Your following</h3> <br> <h1>{{userInfo.following}}</h1></div>
+<div class="container-fluid">
+  <div class="row ">
+    <div class="col-md-2 text-center">
+
+      <ul class="list-group">
+        <li class="list-group-item">
+          <img src="{{userInfo.photo}}" alt="" class="img-responsive img-circle center-block">
+          <h3> Hello, <a href="http://github.com/{{userInfo.login}}" target="_blank">{{userInfo.login}}</a> </h3>
+        </li>
+
+        <li class="list-group-item">
+          <span class="badge">{{userInfo.pubRep}}</span> Public repository
+        </li>
+
+        <li class="list-group-item">
+          <span class="badge">{{userInfo.followers}}</span> Your followers
+        </li>
+
+        <li class="list-group-item">
+          <span class="badge">{{userInfo.following}}</span> Your following
+        </li>
+      </ul>
     </div>
+
+    
   </div>
 </div>
