@@ -15,11 +15,14 @@ export class SidebarComponent implements OnInit {
   getUserInfo(){
     this.githubService.getUserInfo().subscribe( res => {
       var body =JSON.parse(res["_body"]);
-      this.userInfo.login = body['login'],
-      this.userInfo.photo=  body['avatar_url'],
-      this.userInfo.pubRep=body['public_repos'],
-      this.userInfo.followers=body['followers'],
-      this.userInfo.following=body['following']
+      this.userInfo.login = body['login'];
+      this.userInfo.photo=  body['avatar_url'];
+      this.userInfo.pubRep=body['public_repos'];
+      this.userInfo.followers=body['followers'];
+      this.userInfo.following=body['following'];
+
+      //save to localStorage
+      localStorage.setItem('user', body['login']);
     });
   }
   ngOnInit() {

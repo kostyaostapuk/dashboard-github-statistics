@@ -15,7 +15,6 @@ export class ReposComponent implements OnInit {
 
   getNameRep(val: string ) {
     let value = this.reposService.getNameRep(val);
-    console.log(value);
   }
   ngOnInit() {
      this.reposService.getRepos().subscribe(res=>{
