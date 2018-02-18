@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-//import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -21,7 +20,7 @@ import { ReposService } from './repos/repos.service';
 import { AuthGuard } from './data/auth.service';
 import { ChartService } from './chart/chart.service';
 
-import { ChartModule } from 'angular-highcharts';
+import { ChartModule } from 'angular2-highcharts';
 
 
 @NgModule({
@@ -39,8 +38,7 @@ import { ChartModule } from 'angular-highcharts';
     BrowserModule,
     NgbModule.forRoot(),
     HttpModule,
-    ChartModule
-    //HttpClientModule
+    ChartModule.forRoot(require('highcharts'))
   ],
   providers: [ DataService, GithubService, ReposService,ChartService, AuthGuard],
   bootstrap: [AppComponent]

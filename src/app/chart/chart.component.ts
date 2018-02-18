@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { Chart } from 'angular-highcharts';
-import { BaseChartDirective } from 'ng2-charts';
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import { NgModule, Component, OnInit }    from '@angular/core';
+import { BrowserModule }          from '@angular/platform-browser';
+import { ChartModule }            from 'angular2-highcharts';
+
 
 @Component({
   selector: 'app-chart',
@@ -10,47 +12,54 @@ import { BaseChartDirective } from 'ng2-charts';
 
 export class ChartComponent implements OnInit {
 
-  constructor() {
-    setInterval(function(){ this.chart.series[0].addPoint(Math.random()*10)} , 1000);
-  }
-  type: any;
   data: any;
-  options:any;
+  options: Object;
   chart: Object;
-  commitsData =[];
+  commitsData = [];
+  mess: string;
 
-  checkChartData(){
-      if(localStorage.getItem('chartData')===null){
-        this.commitsData= [0,0,0,0,0,0,0];
-      }else{
-        this.commitsData= localStorage.getItem('chartData').split(',');
+  constructor() {
+    this.options = {
+          chart: { type: 'spline' },
+          title: { text : 'Commits of this week'},
+          series: [{}],
+          xAxis: {
+            categories: [
+                'Sunday',
+                'Monday',
+                'Tuesday',
+                'Wednesday',
+                'Thursday',
+                'Friday',
+                'Saturday'
+              ] }
+        };
+        setInterval(() => {
+          this.getChartData();
+          this.chart.series[0].setData(this.getChartData());
+        }, 1000);
+  }
 
-      }
+  getChartData(){
+    var chartData = localStorage.getItem('chartData');
+    if(chartData===null){
+      this.mess="This repos don't have commits on this week";
+    }else{
+      this.mess="";
+      let list=[];
+      this.commitsData=chartData.split(',');
+      this.commitsData.forEach((res)=>{
+        list.push(parseInt(res));
+      })
+      this.commitsData.slice(0, 8);
+      return list;
+    }
+  }
+  saveInstance(chartInstance) {
+      this.chart = chartInstance;
   }
 
   ngOnInit() {
-    this.checkChartData();
-
-
-      this.chart = new Chart({
-        chart: {
-          type: 'line'
-        },
-        title: {
-          text: 'Commits of week'
-        },
-        credits: {
-          enabled: false
-        },
-        series: [{
-
-          data: this.commitsData,
-          name: 'Count commits'
-        }]
-      });
-
-
-
 
   }
 }

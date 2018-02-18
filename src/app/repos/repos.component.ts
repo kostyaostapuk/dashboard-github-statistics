@@ -13,8 +13,6 @@ export class ReposComponent implements OnInit {
 
   getNameRep(val: string ) {
     let value = this.reposService.getNameRep(val).subscribe(res=>{
-      console.log(res);
-
       if(res==null) {
         localStorage.setItem('chartData', "");
       }else{
@@ -28,7 +26,6 @@ export class ReposComponent implements OnInit {
      this.reposService.getRepos().subscribe(res=>{
        this.reposList=res;
        this.getNameRep(this.reposList[0].name);
-       console.log(res);
      });;
 
 
