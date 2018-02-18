@@ -4,6 +4,7 @@ import { ExtraOptions, RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './data/auth.service';
 
 import { HomeComponent } from './home/home.component';
+import { ChartComponent } from './chart/chart.component';
 import { ReposComponent } from './repos/repos.component';
 import { UserRoomComponent } from './user-room/user-room.component';
 const routes: Routes=[

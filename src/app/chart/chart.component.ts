@@ -1,26 +1,31 @@
 import { Component, OnInit } from '@angular/core';
-import { Chart } from 'chart.js';
+import { ChartModule } from 'angular2-chartjs';
 
-import { ChartService } from './chart.service';
 @Component({
   selector: 'app-chart',
   templateUrl: './chart.component.html',
   styleUrls: ['./chart.component.css']
 })
 export class ChartComponent implements OnInit {
-
-  constructor(private chartService: ChartService) { }
-
-  week: Array<any>;
-
-  // getWeekCommitsRep(){
-  //   this.chartService.getWeekCommitsRep()
-  //   .subscribe(res=> { this.week = res });
-  // }
+  type: any;
+  data: any;
+  options:any;
+  constructor() { }
+  commitsData = localStorage.getItem('chartData').split(',');
   ngOnInit() {
-    //this.getWeekCommitsRep();
-    //console.log(this.week);
-    this.chartService.getWeekCommitsRep().subscribe(res=> {this.week = res} );
+    this.type = 'line';
+    this.data = {
+      labels: ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday', 'Saturday',],
+      datasets: [
+        {
+          label: "Count commits in this day",
+          data: this.commitsData
+        }
+      ]
+    };
+    this.options = {
+      responsive: true,
+      maintainAspectRatio: false
+    };
   }
-
 }

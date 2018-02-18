@@ -1,4 +1,6 @@
-<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Select Repository <span class="caret"></span></button>
-<ul class="dropdown-menu scrollable-menu" role="menu">
-  <li *ngFor="let repos of reposList"><a (click)="getNameRep(repos.name)">{{repos.name}}</a></li>
-</ul>
+<div class="form-group">
+    <label>Select Repository</label>
+    <select class="form-control" (change)="getNameRep($event.target.value)">
+      <option *ngFor="let repos of reposList" [value]="repos.name">{{repos.name}}</option>
+    </select>
+</div>

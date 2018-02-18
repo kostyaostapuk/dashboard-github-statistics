@@ -13,6 +13,7 @@ import { ChartComponent } from './chart/chart.component';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpModule } from '@angular/http';
+
 // Services //
 import { DataService } from './data/data.service';
 import { GithubService } from './data/github.service';
@@ -20,6 +21,7 @@ import { ReposService } from './repos/repos.service';
 import { AuthGuard } from './data/auth.service';
 import { ChartService } from './chart/chart.service';
 
+import { ChartModule } from 'angular2-chartjs';
 
 
 @NgModule({
@@ -37,6 +39,7 @@ import { ChartService } from './chart/chart.service';
     BrowserModule,
     NgbModule.forRoot(),
     HttpModule,
+    ChartModule
     //HttpClientModule
   ],
   providers: [ DataService, GithubService, ReposService,ChartService, AuthGuard],
