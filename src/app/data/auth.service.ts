@@ -13,7 +13,6 @@ export class AuthGuard implements CanActivate {
     let code = localStorage.getItem('githubCode');
     console.log(this.githubService.isLoggedIn);
     if (code!=undefined) {
-      this.router.navigate(['user-room']);
       return this.githubService.isLoggedIn;
     }else{
       alert("You don't have rights to access to User Room");
