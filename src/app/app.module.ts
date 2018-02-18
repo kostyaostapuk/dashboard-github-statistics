@@ -21,7 +21,7 @@ import { ReposService } from './repos/repos.service';
 import { AuthGuard } from './data/auth.service';
 import { ChartService } from './chart/chart.service';
 
-import { ChartModule } from 'angular2-chartjs';
+import { ChartModule } from 'angular-highcharts';
 
 
 @NgModule({
