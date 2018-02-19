@@ -22,7 +22,6 @@ import { ChartService } from './chart/chart.service';
 
 import { ChartModule } from 'angular2-highcharts';
 
-
 @NgModule({
   declarations: [
     AppComponent,

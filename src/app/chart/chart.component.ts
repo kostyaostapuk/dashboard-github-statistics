@@ -13,8 +13,8 @@ import { ChartModule }            from 'angular2-highcharts';
 export class ChartComponent implements OnInit {
 
   data: any;
-  options: Object;
-  chart: Object;
+  options: any;
+  chart: any;
   commitsData = [];
   mess: string;
 
