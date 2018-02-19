@@ -35,7 +35,6 @@ export class ChartComponent implements OnInit {
               ] }
         };
         setInterval(() => {
-          this.getChartData();
           this.chart.series[0].setData(this.getChartData());
         }, 1000);
   }
